@@ -1,38 +1,601 @@
-.App {
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial,Helvetica, sans-serif;
+}
+
+
+input{
+    height: 2rem;
+    width: 20rem;
+    border-radius: 20px ;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: rgb(255, 255, 255);;
+}
+.header_wrapper{
+    height: 130px;
+    background-color: rgb(27, 6, 6);
+    color: rgb(163, 160, 163);
+    justify-content: space-between;
+
+}
+.header_container{
+    display: flex;
+    color: rgb(163, 160, 163);
+    justify-content: space-between;
+    margin: 0 30px;
+    height: 100%;
+}
+.header_site_navigate{
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_navigate_elem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(163, 160, 163);
+}
+
+.header_navigate_elem:hover{
+    color: rgb(255, 253, 253);
+}
+
+.header_navigate_elem i{
+    margin:1rem;
+}
+
+.header_logo_name{
+    display: flex;
+    color: rgba(232, 221, 19, 0.933);
+    color:  gradient;
+    
+}
+
+.header_logo_name h1{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-right: 10px;
+}
+.header_logo_name i{
+    display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.main_wrapper{
+    background-color: rgb(180, 180, 52) ;
+    background-image: linear-gradient(to right, #2e94d2, #2866ca );
+    color: transparent;
+    -webkit-background-clip: text;
+    text-align: center;
+}
+
+.main_container{
+    margin: 0 15%;
+    
+}
+
+.crypto_parameter{
+    font-size: 1rem;
+    margin: 1rem;
+    color: rgb(0, 0, 0);
+}
+.crypto_number{
+    font-size: 2rem;
+    color: rgb(173, 173, 173);
+}
+
+.info_block{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.crypto_logo img{
+    width: 2rem ;
+    height: 2rem;
+}
+
+.crypto_element_container{
+    margin: 0 15%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(2, 43, 205, 0.837);
+    border-radius: 20px;
+    height: 100%;
+    padding: 10px;
+    width: 80%;
+    z-index: 2;
+    transition: 0.5s ease-in-out ;
+}
+
+
+.crypto_element_container a{
+    color: rgb(255, 255, 255);
+}
+
+.crypto_element_container:hover{
+    transform: scale(1.2);
+    box-shadow: 0px 0px 10px black;
+}
+
+.crypto_element_head{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
+
+}
+.crypto_wrapper{
+    color: rgb(255, 253, 253);
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+.crypto_element{
+    margin: 0 auto;
+}
+
+.crypto_element_footer{
+    margin:  1rem;
+    line-height: 2rem;
+}
+
+
+
+.crypto_wrapper_margin{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:2rem;
+    color: white;
+
+}
+
+.main_wrapper h1{
+    margin: 30px 0;
+}
+
+.crypto_input_wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.crypto_input_wrapper input{
+    border-radius: 5px;
+    width: 10%;
+}
+
+.crypto_name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination_count_wrapper{
+    color: #2e94d2;;
+    display: flex;
+    justify-content:center;
+    align-items: center;  
+    text-align: center;
+    margin-top: 7rem;
+    font-size: 2rem;
+    vertical-align: middle;
+}
+
+.page_number:hover{
+    color: white;
+}
+
+.activeHeaderItem{
+    color: white;
+    cursor: pointer;
+}
+.notActiveHeaderItem{
+    color: #a3a1a1;
+    cursor: pointer !important;
+}
+.header_site_navigate a:hover{
+color:white ;
+}
+.header_site_navigate a{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+.pagination_count_wrapper i:hover{
+    color: #2866ca;
+}
+
+.page_number_active {
+    width: 2rem;
+    color: #2866ca;
+    font-weight: 700;
+}
+.page_number_no_active {
+    width: 2rem;
+    color: #2e94d2;
+}
+
+.page_number_no_active:hover{
+    color: #2866ca;
+}
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+  
+  .news-card {
+    border: 0px solid aqua;
+    margin: 0.5rem;
+    position: relative;
+    height: 12rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    flex: 1;
+    min-width: 290px;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+  }
+  
+  @media (min-width: 900px) {
+  
+  .news-card {
+      height: 20rem
+  }
+    }
+  
+  .news-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 80%);;
+        z-index: 0;
+      }
+  
+  .news-card__card-link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+  /*     background: rgba(255,0,0,.5); */
+    }
+  
+  .news-card__image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 3s ease;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      position: relative;
+      z-index: -1;
+    }
+  
+  .news-card__text-wrapper {
+      position: absolute;
+      bottom: 0rem;
+      padding: 1rem;
+      color: white;
+  /*     background-color: rgba(0, 0, 0, 0.4); */
+      transition: background-color 1.5s ease;
+    }
+  
+  .news-card__title {
+      transition: color 1s ease;
+      margin-bottom: .5rem;
+    }
+  
+  .news-card__post-date {
+      font-size: .7rem;
+      margin-bottom: .5rem;
+      color: #CCC;
+    }
+  
+  .news-card__details-wrapper {
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 1.5s ease, opacity 1s ease;
+    }
+  
+  @media (min-width: 900px) {
+      .news-card:hover .news-card__details-wrapper {
+        max-height: 20rem;
+        opacity: 1;
+      }
+      .news-card:hover .news-card__text-wrapper {
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+      .news-card:hover .news-card__title {
+        color: yellow;
+      }
+      .news-card:hover .news-card__image {
+        transform: scale(1.2);
+        z-index: -1;
+      }
+    }
+  
+  .news-card__excerpt {
+      font-weight: 300;
+    }
+  
+  .news-card__read-more {
+      background: black;
+      color: #bbb;
+      display: block;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.3rem;
+      margin-top: 1rem;
+      border: 1px solid #444;
+      font-size: 0.8rem;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      text-decoration: none;
+      width: 7rem;
+      margin-left: auto;
+      position: relative;
+      z-index: 5;
+    }
+  
+  .news-card__read-more i {
+        position: relative;
+        left: 0.2rem;
+        color: #888;
+        transition: left 0.5s ease, color 0.6s ease;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+  
+  .news-card__read-more:hover i {
+        left: 0.5rem;
+        color: yellow;
+      }
+
+      .convert_wrapper{
+        text-align: center;
+        padding: 40px;
+        background-color: #f3f3f2;
+    height: calc(100vh - 130px);
+      }
+    
+  
+  .crypto_change_box{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    ;
+  }
+  .money_crypto_box{
+    display: flex;
+    border: 2px solid  rgb(217, 217, 217);
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    width: 12rem;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: white
+    } 
+ 
+  .convert_wrapper h3{
+      margin-top: 50px ;
+  }
+
+  .active_box{
+      color: white;
+      background-color: #2f80ed;
+      border: 2px solid white;
+  }
+
+
+.cryptoInfo_wrapper{
+     max-width: 80%; 
+     margin: 0 auto;
+     color: #444;
+}
+.cryptoInfo_stats{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cryptoInfo{
+    text-align: center;
+    margin: 40px auto;
+}
+.cryptoInfo h1{
+    background-image: linear-gradient(to right, #2e94d2, #2866ca );
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+    font-weight: 700;
+}
+.cryptoInfo p{
+    margin: 1rem auto;
+}
+
+.cryptoInfo_block{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.cryptoStat_elem{
+    display:flex;
+    justify-content: space-between;
+    height: 3rem;
+    border-bottom: 1px solid rgb(240, 239, 239);
+}
+
+.cryptoStat_elem:hover{
+    background-color: rgba(230, 230, 230, 0.196) ;
+}
+.cryptoStat_elemLogoInfo i{
+    margin-right: 0.8rem;
+}
+.cryptoState_elemValue{
+    font-weight: 800;
+}
+
+.cryptoInfoText{
+    width: 45%;
+    line-height: 1.8rem;
+}
+
+.cryptoLink{
+    width: 45%;
+}
+
+.link{
+    color: #4a83a5;
+    cursor: pointer;
+}
+.cryptoInfo_block h1{
+    margin-bottom: 15px;
+    background-image: linear-gradient(to right, #2e94d2, #2866ca );
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+      font-weight: 700;
+}
+
+.news_header{
+    text-align: center;
+}
+.news_header h1{
+    margin-top: 1.5rem;
+}
+.select_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.select_box p{
+    font-weight: 700;
+    margin: 10px;
+}
+
+.select_box_info{
+    margin: 15px;
+}
+
+.change_block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:30px ;
+}
+
+
+.change_block select{
+    height: 2rem;
+    width: 20rem;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #2f80ed;
+    color: white;
+}
+.change_block option{
+    background-color: #2f80ed;
+    color: white;
+}
+.change_block option:hover{
+    background-color: white;
+    color: #2f80ed;
+}
+.change_block_wrapper{
+    width: 60%;
+    margin: 0 auto;
+}
+.change_block input,select{
+    margin-left: 10px;
+}
+
+
+
+
+.converter_btn {
+  appearance: none;
+  backface-visibility: hidden;
+  background-color: #2f80ed;
+  border-radius: 10px;
+  border-style: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  height: 50px;
+  letter-spacing: normal;
+  line-height: 1.5;
+  outline: none;
+  overflow: hidden;
+  padding: 14px 30px;
+  position: relative;
   text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+  margin-top: 30px
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.converter_btn:hover {
+  background-color: #1366d6;
+  box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, rgba(0, 0, 0, .05) 0 1px 4px;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.converter_btn:hover:after {
+  opacity: .5;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.converter_btn:active {
+  box-shadow: rgba(0, 0, 0, .1) 0 3px 6px 0, rgba(0, 0, 0, .1) 0 0 10px 0, rgba(0, 0, 0, .1) 0 1px 4px -1px;
+  transform: translateY(2px);
+  transition-duration: .35s;
 }
 
-.App-link {
-  color: #61dafb;
+.converter_btn:active:after {
+  opacity: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (min-width: 768px) {
+  .converter_btn {
+    padding: 14px 22px;
+    width: 176px;
   }
 }
