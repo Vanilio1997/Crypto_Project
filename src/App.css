@@ -5,6 +5,10 @@
     font-family: Arial,Helvetica, sans-serif;
 }
 
+body{
+    height: 100%;
+}
+
 
 input{
     height: 2rem;
@@ -102,7 +106,7 @@ input{
 }
 
 .crypto_element_container{
-    margin: 0 15%;
+    margin: 0 10%;
     justify-content: center;
     align-items: center;
     background-color: rgba(2, 43, 205, 0.837);
@@ -149,10 +153,23 @@ input{
 
 .crypto_wrapper_margin{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3,1fr);
     gap:2rem;
     color: white;
 
+}
+@media (max-width:1199px){
+    .crypto_wrapper_margin{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media (max-width:767px){
+    .crypto_wrapper_margin{
+        grid-template-columns: 1fr;
+    }
+    .crypto_input_wrapper input{
+        width: 30% !important;
+    }
 }
 
 .main_wrapper h1{
@@ -239,7 +256,7 @@ color:white ;
   }
   
   .news-card {
-    border: 0px solid aqua;
+
     margin: 0.5rem;
     position: relative;
     height: 12rem;
@@ -248,10 +265,6 @@ color:white ;
     flex: 1;
     min-width: 290px;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
   }
   
   @media (min-width: 900px) {
@@ -377,16 +390,14 @@ color:white ;
         text-align: center;
         padding: 40px;
         background-color: #f3f3f2;
-    height: calc(100vh - 130px);
       }
     
   
   .crypto_change_box{
       display: flex;
-      align-items: center;
       justify-content: center;
-    ;
   }
+ 
   .money_crypto_box{
     display: flex;
     border: 2px solid  rgb(217, 217, 217);
@@ -421,6 +432,24 @@ color:white ;
     justify-content: space-between;
     align-items: center;
 }
+.cryptoInfo_block{
+    display: flex;
+    justify-content: space-between;
+}
+@media (max-width: 991px) {
+    .cryptoInfo_stats {
+     display: block;
+    }
+    .cryptoInfo_block {
+     text-align: center;
+     flex-direction: column;
+     align-items: center;
+     justify-content: ;
+    }
+    .cryptoInfoText{
+        width: 100% !important;
+    }
+  }
 .cryptoInfo{
     text-align: center;
     margin: 40px auto;
@@ -434,11 +463,6 @@ color:white ;
 }
 .cryptoInfo p{
     margin: 1rem auto;
-}
-
-.cryptoInfo_block{
-    display: flex;
-    justify-content: space-between;
 }
 
 
@@ -507,7 +531,23 @@ color:white ;
     align-items: center;
     margin-top:30px ;
 }
+.change_block p{
+    font-weight: 900;
 
+}
+@media (max-width: 991px) {
+    .change_block {
+      display: block;
+    }
+    .change_block p {
+        margin: 1rem;
+        text-align: center;
+        
+    }
+    .change_block_wrapper{
+        width: 100% !important;
+    }
+  }
 
 .change_block select{
     height: 2rem;
@@ -523,20 +563,15 @@ color:white ;
     background-color: #2f80ed;
     color: white;
 }
-.change_block option:hover{
-    background-color: white;
-    color: #2f80ed;
-}
+
 .change_block_wrapper{
     width: 60%;
     margin: 0 auto;
 }
+
 .change_block input,select{
     margin-left: 10px;
 }
-
-
-
 
 .converter_btn {
   appearance: none;
@@ -598,4 +633,123 @@ color:white ;
     padding: 14px 22px;
     width: 176px;
   }
+}
+
+.coinChart_Wrapper{
+    text-align: center;
+}
+.coinChart_Wrapper h1{
+margin: 20px 0;
+}
+.coinChart_Wrapper h3{
+margin: 10px 0;
+}
+
+.coinChart_Wrapper select{
+width: 15rem;
+text-align: center;
+height: 2rem;
+border-radius: 10px;
+background-color: #2f80ed;
+color: white;
+}
+
+.priceChart_head{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 991px) {
+    .priceChart_head {
+     display: block;
+    }
+  }
+
+.priceChart_stats{
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+
+}
+
+.openMenu{
+    font-size:  2rem;
+    margin: 20px;
+    display: none;
+    cursor: pointer;
+}
+.closeMenu{
+    font-size: 2rem;
+    display: none;
+    cursor: pointer;
+}
+
+.openMenu:hover{
+    color: rgb(255, 255, 255);
+}
+.closeMenu:hover{
+    color: rgb(255, 255, 255);
+}
+
+@media(max-width:1119px){
+   .header_site_navigate{
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 10;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(0, 0, 0);
+        transition: top 1s ease;
+        display: none;
+    }
+.header_site_navigate .closeMenu{
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .header_site_navigate_hamburgerMenu{
+        display: flex;
+    }
+
+    .openMenu{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+.footer_wrapper{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer_wrapper h3{
+    color: rgba(232, 221, 19, 0.933);
+    text-align: center;
+}
+
+.footer_wrapper a{
+    color: white;
+    transition: 1000ms;
+    margin: 0.2rem;
+}
+.footer_wrapper a:hover{
+    color: rgb(179, 179, 179);
+
+}
+.footer_link{
+    margin-top: 16px;
 }

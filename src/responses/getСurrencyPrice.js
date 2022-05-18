@@ -5,7 +5,6 @@ const currencyApiHeaders =  {
     'X-RapidAPI-Key': 'f0391398e5mshf2ecfbc84b7e8c1p1d6ee1jsncc91bc4b9a82'
   }
 
-
   const baseUrl = 'https://currencyconverter9.p.rapidapi.com';
 
   const createRequest = (url) =>({url , headers:currencyApiHeaders});

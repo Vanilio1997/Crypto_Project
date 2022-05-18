@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { useGetCurrencyValueQuery } from '../responses/getСurrencyPrice';
 import { useGetCoinsQuery } from '../responses/getCoinsApi';
 import { useGetAllCurrencyValueQuery } from '../responses/getAllCurrency'
@@ -8,37 +8,36 @@ import { setChangeType, getCurrency,getCrypto,getToValue,getFromValue,getFromTyp
 
 
 const Exchanger = () => {
-  const [skip, setSkip] = React.useState(true)
+  const [skip, setSkip] = useState(true)
   let valueFromInput = useSelector(state=>state.cryptoCurrency.getFromValue);
   const valueToInput = useSelector(state => state.cryptoCurrency.getToValue);
   const startFromType = useSelector (state=>state.cryptoCurrency.getFromType);
   const typeToCoin = useSelector (state=> state.cryptoCurrency.getToType);
   const changeType = useSelector(state=>state.cryptoCurrency.changeType);
-  const changeFromMoneya = useSelector(state=>state.cryptoCurrency.changeFromMoney)
+  const changeFromMoney = useSelector(state=>state.cryptoCurrency.changeFromMoney)
   const {data:getAllCurrency } = useGetAllCurrencyValueQuery();
   const {data:getCurrencyValue} = useGetCurrencyValueQuery({from:startFromType,to:'USD',number:+valueFromInput},{
     skip,
   })
   const {data: getAllCryptoCoins,isFetching} = useGetCoinsQuery(100);
-
+  const dispatch = useDispatch();
 
  function getResponse(){
   setSkip(false);
- dispatch(changeFromMoney(!changeFromMoneya))
+ dispatch(changeFromMoney(!changeFromMoney))
   }
 
   function stopResponse(e){
     dispatch(getFromValue(e.target.value));
     setSkip(true);
   }
-const dispatch = useDispatch();
+
 const arrayGetAllCurrncy = [];
 if(getAllCurrency){
 for (let value of Object.entries(getAllCurrency.currencies)) {
   arrayGetAllCurrncy.push(value)
 }}
 if( arrayGetAllCurrncy.length  && getAllCryptoCoins && !startFromType){
-  // eslint-disable-next-line no-lone-blocks
   dispatch(getFromType( arrayGetAllCurrncy[0][0])) 
   dispatch (getToType(getAllCryptoCoins.data.coins[0].name))
 }
@@ -50,11 +49,6 @@ function choiseMoney(){
   dispatch(setChangeType('Money'))
 }
 
-  const exchangeGetType = useSelector(state=>state);
-  console.log(exchangeGetType.cryptoCurrency.changeFromMoney);
-
-  if(valueFromInput){
-  valueFromInput =  valueFromInput.split('').filter(item => parseInt(item.charAt(0))).join('');}
 
 useEffect(()=>{
   console.log('ПОСЛЕ---------->'+ startFromType);
@@ -62,18 +56,14 @@ useEffect(()=>{
 const coinToChangePrice = getAllCryptoCoins?.data?.coins.filter(item => item.name === typeToCoin )
 debugger
   if(getCurrencyValue && coinToChangePrice && startFromType.length===3){
-    console.log(getCurrencyValue , valueFromInput)
-    console.log('ПОСЛЕ---------->'+ startFromType);
-    console.log(valueFromInput)
-    debugger
+
 dispatch(getToValue(getCurrencyValue?.result.USD / +coinToChangePrice[0]?.price))}} 
 else{
   const coinToChangePrice = getAllCryptoCoins?.data?.coins.filter(item => item.name === typeToCoin )
   const coinFromChangePrice = getAllCryptoCoins?.data?.coins.filter(item => item.name === startFromType )
-
   dispatch(getToValue(+coinFromChangePrice[0]?.price * valueFromInput / +coinToChangePrice[0]?.price))
 }
-},[changeFromMoneya])
+},[changeFromMoney])
 
 useEffect(()=>{
 if(  changeType==='Crypto'){
@@ -126,14 +116,14 @@ if(isFetching) return<h1>Loading...</h1>
     <div className='change_block_wrapper'>
     <div className='change_block change_block_margin'>
       <div>
-  Amount
+      <p>Amount</p>
     <input
-        type="text"
+        type="number"
         value={valueFromInput}
         onChange={(e) => stopResponse(e)} />
     </div>
         <div>
-          From
+          <p>From</p>
         <select         
           onChange={(e) => dispatch(getFromType(e.target.value))}
         >
@@ -149,11 +139,11 @@ if(isFetching) return<h1>Loading...</h1>
        </div>
        <div className='change_block change_block_margin'>
          <div>
-     Amount
+     <p>Amount</p>
       <input type="text" value={valueToInput} />
       </div>
       <div>
-      To
+      <p>To</p>
       <select onChange={(e) => dispatch(getToType(e.target.value))}>
         {getAllCryptoCoins?.data?.coins?.map((cryptoCoinName) => (
           <option value={cryptoCoinName.name}>{cryptoCoinName.name}</option>

@@ -7,7 +7,6 @@ import News from './News'
 const Main = () => {
 const {data: getCoins,isFetching} = useGetCoinsQuery(9)
 
-
     if(isFetching) return <h1>'Loading...</h1>
   return (
    <div className='main_wrapper'>
@@ -17,15 +16,15 @@ const {data: getCoins,isFetching} = useGetCoinsQuery(9)
                <div className="info_block">  
                <div>
                 <div className="crypto_parameter">Total Cryptocurrencies</div>
-                <div className="crypto_number">{millify(getCoins.data.stats.totalCoins)}</div>
+                <div className="crypto_number">{millify(getCoins?.data?.stats?.totalCoins)}</div>
                 </div>
                 <div>
                 <div className="crypto_parameter">Total Market Cap</div>
-                <div className="crypto_number">{millify(getCoins.data.stats.totalMarketCap)}</div>
+                <div className="crypto_number">{millify(getCoins?.data?.stats?.totalMarketCap)}</div>
                 </div>
                 <div>
                 <div className="crypto_parameter">Total Markets</div>
-                <div className="crypto_number">{millify(getCoins.data.stats.totalMarkets)}</div>
+                <div className="crypto_number">{millify(getCoins?.data?.stats?.totalMarkets)}</div>
                 </div>
                 <div>
                 <div className="crypto_parameter">Total Exchanges</div>
@@ -33,7 +32,7 @@ const {data: getCoins,isFetching} = useGetCoinsQuery(9)
                 </div>
                 <div>
                 <div className="crypto_parameter">Total 24h Volume</div>
-                <div className="crypto_number">{millify(getCoins.data.stats.total24hVolume)}</div>
+                <div className="crypto_number">{millify(getCoins?.data?.stats?.total24hVolume)}</div>
                 </div>
                </div>
            </div>

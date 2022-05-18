@@ -1,34 +1,34 @@
-// import { Line } from 'react-chartjs-2';
-import { Col, Row, Typography } from 'antd';
-// import {
-//   Chart as ChartJS,
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend,
-// } from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend
-// );
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 
-export const LineChart = ({ coinHistory, currentPrice, coinName }) => {
+export const LineChart = ({ coinHistory}) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
-  for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
+
+  for (let i = coinHistory?.data?.history?.length -1 ; i > 0; i--) {
     coinTimestamp.push(
-      new Date(coinHistory.data.history[i].timestamp).toLocaleDateString()
+      new Date(coinHistory.data.history[i].timestamp * 1000).toLocaleDateString()
     );
     coinPrice.push(coinHistory.data.history[i].price);
   }
@@ -59,7 +59,7 @@ export const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   };
   return (
     <>
-      {/* <Line data={data} options={options} /> */}
+      <Line data={data} options={options} />
     </>
   );
 };

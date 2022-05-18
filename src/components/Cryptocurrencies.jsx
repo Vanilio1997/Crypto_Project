@@ -34,7 +34,6 @@ const count = mainPage ? 9 : 100
   ]
   })
 
-  
 
 function incrementPage(){
   if(pageState.activePage<4){
@@ -71,21 +70,11 @@ function lastPage(){
    dispatch(setLastPage())
   }
 
-
-
   function toggleActive(index){
   setPageState({...pageState,activePage:pageState.pageItemInfo[index].id})
   dispatch(setCurrentPage(index+1))
   }
 
- function changePage(e){
-  dispatch(setCurrentPage(e.target.innerHTML))
- }
-
-function pageFunction(e,currentPage){
-  changePage(e);
-  toggleActive(currentPage);
-}
 
 
 useEffect(()=>{
@@ -137,8 +126,10 @@ useEffect(()=>{
       <div className='crypto_wrapper_margin'>
 {  
   coinsData && coinsData.length ?
-  coinsData.map((item) => (
-        <div style={{color:'black'}} className='crypto_element_container'>
+  coinsData.map((item,index) => (
+        <div key={index} 
+        style={{color:'black'}}
+        className='crypto_element_container'>
           <Link to={`/crypto/${item?.uuid}`}> 
           <div className='crypto_element'>
           <div className='crypto_element_head'>
@@ -155,7 +146,7 @@ useEffect(()=>{
           </Link>
            </div>
       )):
-      <h1>Fuck You</h1>
+      null
 }
     </div>
     { !mainPage?

@@ -1,11 +1,10 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useParams } from "react-router-dom";
 import { useGetCoinInfoQuery ,useGetCryptoHistoryQuery} from "../responses/getCryptoInfo";
 import millify from 'millify';
 import { useDispatch,useSelector } from "react-redux";
 import HTMLReactParser from 'html-react-parser';
-import React from "react";
-// import { LineChart } from "./LineChart";
+import { LineChart } from "./LineChart";
+import { timePeriod } from "../reducers/cryptoInfo";
 
 
 
@@ -15,14 +14,11 @@ import React from "react";
     const {coinId} = useParams();
     const allTime = useSelector(state=>state.cryptoHistoryInformation.timePeriodChange)
     const cryproPeriod = useSelector(state=>state.cryptoHistoryInformation.timePeriod)
-    let a = useSelector(state=>state);
-    console.log(a);
     const {data:getCoinInfo, isFetching} = useGetCoinInfoQuery(coinId);
-    const {data:cryptoPrice} = useGetCryptoHistoryQuery({id:coinId,period:cryproPeriod});
+    const {data:cryptoPrice} = useGetCryptoHistoryQuery({id:coinId,period:cryproPeriod} );
     const cryptoDetails = getCoinInfo?.data?.coin;
-    let price = cryptoPrice?.data?.history[cryptoPrice?.data?.history.length-1].price;
-    console.log(cryptoPrice);
-    console.log(price);
+   const price = cryptoPrice?.data?.history[cryptoPrice?.data?.history.length-1].price;
+    if (isFetching) return <h1>Loading...</h1>
 
     const cryptoInfo = [
         {logo: 'fa-solid fa-sack-dollar',text:'Price to USD', value :cryptoDetails?.price && millify(cryptoDetails?.price) +'$'},
@@ -40,24 +36,25 @@ import React from "react";
         {logo: 'fa-regular fa-circle-exclamation',text:'Total Supply', value :'$'+cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)},
         {logo: 'fa-regular fa-circle-exclamation',text:'Circulating Supply', value :'$'+cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)},
     ]
-
-    if (isFetching) return <h1>Loading...</h1>
   return (
     <div className="cryptoInfo_wrapper">
     <div className="coinChart_Wrapper">
-            <h1>{cryptoDetails.name} ({cryptoDetails.symbol}) Price</h1>
-           <p> {cryptoDetails.name} live price in US dollars. View value statistics ,marcet cap and supply.</p>
-           <select>
+            <h1>{cryptoDetails?.name} ({cryptoDetails?.symbol}) Price</h1>
+           <p> {cryptoDetails?.name} live price in US dollars. View value statistics ,marcet cap and supply.</p>
+           <h3>Pick Period</h3> <select onChange={(e)=> dispatch(timePeriod(e.target.value))}>
                {allTime.map((time)=>(
                    <option>{time}</option>
                ))}
            </select>
-
-           <h1>{cryptoDetails.name} Price Chart</h1>
-           {/* <LineChart  
-           coinHistory={cryptoPrice} 
-           currentPrice={millify(cryptoDetails?.price)} 
-           coinName={cryptoDetails?.name}/> */}
+           
+           <div className="priceChart_head">
+           <h1>{cryptoDetails?.name} Price Chart</h1>
+           <div className="priceChart_stats">
+           <p>Current {cryptoDetails?.name} price: {cryptoDetails?.price && millify(cryptoDetails?.price)} </p>
+           <p>Change {cryptoPrice?.data?.change}% </p>
+           </div>
+           </div>
+           <LineChart  coinHistory={cryptoPrice} />
         </div>
         <div className="cryptoInfo_stats">
             <div className="cryptoInfo">
@@ -66,8 +63,10 @@ import React from "react";
              An ovierview showing the stats of  {cryptoDetails?.name}
            </p>
            {
-               cryptoInfo.map(item =>(
-                <div className="cryptoStat_elem">
+               cryptoInfo.map((item,index) =>(
+                <div  
+                key={index} 
+                className="cryptoStat_elem">
                 <div className="cryptoStat_elemLogoInfo">
                 <i class={item.logo}></i>
                 {item.text}
@@ -83,8 +82,10 @@ import React from "react";
                An ovierview showing the stats of all cryptocurrencies
            </p>
            {
-               cryptoStat.map(item =>(
-                <div className="cryptoStat_elem">
+               cryptoStat.map((item,index) =>(
+                <div
+                key={index} 
+                className="cryptoStat_elem">
                 <div className="cryptoStat_elemLogoInfo">
                 <i class={item.logo}></i>
                 {item.text}
