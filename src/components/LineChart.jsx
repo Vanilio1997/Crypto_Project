@@ -1,3 +1,4 @@
+
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -21,7 +22,8 @@ ChartJS.register(
 );
 
 
-export const LineChart = ({ coinHistory}) => {
+
+export   const LineChart = ({ coinHistory}) => {
   const coinPrice = [];
   const coinTimestamp = [];
 

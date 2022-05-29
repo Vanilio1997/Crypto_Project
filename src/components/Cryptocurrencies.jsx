@@ -33,7 +33,7 @@ const count = mainPage ? 9 : 100
       {id:4,pageNumber:5},
   ]
   })
-
+console.log(coinsData);
 
 function incrementPage(){
   if(pageState.activePage<4){
